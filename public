@@ -1,0 +1,4 @@
+<script>start("c:\\Users\\Ramazan\\Yeni klasör (2)\\public\\");</script>
+<script>onHasParentDirectory();</script>
+<script>addRow("logo.jpeg","logo.jpeg",0,28227,"27.6 kB",1772277825,"2/28/26, 2:23:45 PM");</script>
+<script>addRow("vite.svg","vite.svg",0,1497,"1.5 kB",1772275712,"2/28/26, 1:48:32 PM");</script>
