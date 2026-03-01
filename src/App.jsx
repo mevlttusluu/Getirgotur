@@ -1,16 +1,10 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import HomePage from './component/HomePage'
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-   <img src="logo.jpeg" alt="logo"  width={500} height={700}/>
-    </>
-  )
+  // Şu anda basit web sitesi düzeni:
+  // Üstte giriş bloğu, altında ürün/kategori listesi gösteriyoruz.
+  return <HomePage />
 }
 
 export default App
