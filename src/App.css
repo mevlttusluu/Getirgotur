@@ -1,7 +1,13 @@
 /* Base */
 body {
   margin: 0;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
 }
 
 #root {
@@ -98,13 +104,17 @@ body {
 }
 
 .hero--with-login::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   right: -20%;
   width: 60%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.08) 0%,
+    transparent 70%
+  );
   pointer-events: none;
 }
 
@@ -165,7 +175,9 @@ body {
   padding: 24px 24px 28px;
   width: 100%;
   max-width: 380px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
 .login-panel-header {
@@ -196,7 +208,9 @@ body {
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
 }
 
 .login-panel-country:hover {
@@ -221,7 +235,10 @@ body {
   font-size: 15px;
   outline: none;
   background: #f9fafb;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
 .login-panel-input::placeholder {
@@ -243,7 +260,10 @@ body {
   background: #ffd300;
   color: #1f2937;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
 }
 
 .login-panel-submit:hover {
@@ -299,7 +319,10 @@ body {
   align-items: center;
   gap: 12px;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .category-card:hover {
@@ -364,7 +387,9 @@ body {
   text-align: center;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
   border: 1px solid rgba(0, 0, 0, 0.04);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .step-card:hover {
@@ -437,7 +462,10 @@ body {
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .contact-button:hover {
@@ -446,31 +474,145 @@ body {
   transform: translateY(-2px);
 }
 
-/* Footer */
+/* ========== FOOTER ========== */
+
 .landing-footer {
-  padding: 20px 6vw 24px;
+  background: #fff;
+  padding: 60px 6vw 30px;
   border-top: 1px solid #e5e7eb;
-  font-size: 13px;
+  font-size: 14px;
   color: #6b7280;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 50px;
+  margin-bottom: 40px;
+}
+
+/* Logo Alanı */
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.footer-logo img {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.footer-desc {
+  margin: 16px 0 20px;
+  line-height: 1.6;
+  max-width: 260px;
+}
+
+/* Sosyal */
+.footer-social {
+  display: flex;
+  gap: 14px;
+}
+
+.footer-social a {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #f3f4f6;
+  font-size: 16px;
+  transition: all 0.25s ease;
+}
+
+.footer-social a:hover {
+  background: #5d3ebc;
+  color: #fff;
+  transform: translateY(-4px);
+}
+
+/* Kolonlar */
+.footer-col h4 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.footer-col a {
+  display: block;
+  text-decoration: none;
+  color: #6b7280;
+  margin-bottom: 10px;
+  transition: all 0.2s ease;
+}
+
+.footer-col a:hover {
+  color: #5d3ebc;
+  padding-left: 6px;
+}
+
+/* App Butonları */
+.app-buttons {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.app-buttons button {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 13px;
+}
+
+.app-buttons button:hover {
+  background: #5d3ebc;
+  color: #fff;
+  border-color: #5d3ebc;
+}
+
+/* Bottom */
+.footer-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #fff;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 20px;
+  font-size: 13px;
 }
 
-.landing-footer-links {
+.footer-secure {
   display: flex;
   gap: 20px;
 }
 
-.landing-footer-links a {
-  color: #6b7280;
-  text-decoration: none;
-  transition: color 0.2s ease;
+/* Responsive */
+@media (max-width: 992px) {
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
 }
 
-.landing-footer-links a:hover {
-  color: #5d3ebc;
+@media (max-width: 600px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
 }
 
 /* Responsive */

@@ -118,7 +118,63 @@ export default function HomePage() {
         </section>
       </main>
 
-      <h1>Footer eklenicek</h1>
+      <footer className="landing-footer">
+        <div className="footer-container">
+          <div className="footer-col brand-col">
+            <div className="footer-logo">
+              <img src="/logo.jpeg" alt="Getirgötür" />
+              <span>Getirgötür</span>
+            </div>
+            <p className="footer-desc">
+              Dakikalar içinde kapında. Market, restoran ve daha fazlası tek
+              uygulamada.
+            </p>
+
+            <div className="footer-social">
+              <a href="#">📘</a>
+              <a href="#">📸</a>
+              <a href="#">🐦</a>
+              <a href="#">🎥</a>
+            </div>
+          </div>
+
+          <div className="footer-col">
+            <h4>Kurumsal</h4>
+            <a href="#">Hakkımızda</a>
+            <a href="#">Kariyer</a>
+            <a href="#">Blog</a>
+            <a href="#">İletişim</a>
+          </div>
+
+          <div className="footer-col">
+            <h4>Yardım</h4>
+            <a href="#">Sık Sorulan Sorular</a>
+            <a href="#">Gizlilik Politikası</a>
+            <a href="#">Kullanım Şartları</a>
+            <a href="#">Çerez Politikası</a>
+          </div>
+
+          <div className="footer-col">
+            <h4>İş Ortağı</h4>
+            <a href="#">Restoran Ol</a>
+            <a href="#">Market Ol</a>
+            <a href="#">Kurye Ol</a>
+
+            <div className="app-buttons">
+              <button> App Store</button>
+              <button>▶ Google Play</button>
+            </div>
+          </div>
+        </div>
+
+        <div className="footer-bottom">
+          <p>© 2026 Getirgötür. Tüm hakları saklıdır.</p>
+          <div className="footer-secure">
+            <span>🔒 Güvenli Ödeme</span>
+            <span>✔ 256bit SSL</span>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
