@@ -1,14 +1,14 @@
 const CATEGORIES = [
-  { name: 'Atıştırmalık', icon: '🥜', color: '#fef3c7' },
-  { name: 'Su & İçecek', icon: '🥤', color: '#dbeafe' },
-  { name: 'Meyve & Sebze', icon: '🥬', color: '#dcfce7' },
-  { name: 'Süt Ürünleri', icon: '🥛', color: '#fef9c3' },
-  { name: 'Kahvaltılık', icon: '🍳', color: '#fce7f3' },
-  { name: 'Dondurma', icon: '🍦', color: '#e0e7ff' },
-  { name: 'Temel Gıda', icon: '🛒', color: '#f3e8ff' },
-  { name: 'Pratik Yemek', icon: '🍱', color: '#ffedd5' },
-  { name: 'Et, Tavuk & Balık', icon: '🍗', color: '#fee2e2' },
-]
+  { name: "Atıştırmalık", icon: "🥜", color: "#fef3c7" },
+  { name: "Su & İçecek", icon: "🥤", color: "#dbeafe" },
+  { name: "Meyve & Sebze", icon: "🥬", color: "#dcfce7" },
+  { name: "Süt Ürünleri", icon: "🥛", color: "#fef9c3" },
+  { name: "Kahvaltılık", icon: "🍳", color: "#fce7f3" },
+  { name: "Dondurma", icon: "🍦", color: "#e0e7ff" },
+  { name: "Temel Gıda", icon: "🛒", color: "#f3e8ff" },
+  { name: "Pratik Yemek", icon: "🍱", color: "#ffedd5" },
+  { name: "Et, Tavuk & Balık", icon: "🍗", color: "#fee2e2" },
+];
 
 export default function HomePage() {
   return (
@@ -72,7 +72,7 @@ export default function HomePage() {
                 key={name}
                 className="category-card"
                 type="button"
-                style={{ '--cat-bg': color }}
+                style={{ "--cat-bg": color }}
               >
                 <div className="category-icon">
                   <span className="category-emoji">{icon}</span>
@@ -108,8 +108,8 @@ export default function HomePage() {
           <div className="contact-card">
             <h2>İş ortağımız olmak ister misin?</h2>
             <p>
-              Restoranın, marketin veya kurye ekibin mi var?
-              Getirgötür ile daha fazla müşteriye ulaş.
+              Restoranın, marketin veya kurye ekibin mi var? Getirgötür ile daha
+              fazla müşteriye ulaş.
             </p>
             <button className="contact-button" type="button">
               Başvuru Yap
@@ -118,14 +118,7 @@ export default function HomePage() {
         </section>
       </main>
 
-      <footer className="landing-footer">
-        <span>© {new Date().getFullYear()} Getirgötür</span>
-        <div className="landing-footer-links">
-          <a href="#">KVKK</a>
-          <a href="#">Gizlilik</a>
-          <a href="#">Kullanım Koşulları</a>
-        </div>
-      </footer>
+      <h1>Footer eklenicek</h1>
     </div>
-  )
+  );
 }
