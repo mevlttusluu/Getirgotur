@@ -1,10 +1,7 @@
-import './App.css'
-import HomePage from './component/HomePage'
+import HomePage from "./component/home/HomePage";
 
 function App() {
-  // Şu anda basit web sitesi düzeni:
-  // Üstte giriş bloğu, altında ürün/kategori listesi gösteriyoruz.
-  return <HomePage />
+  return <HomePage />;
 }
 
-export default App
+export default App;

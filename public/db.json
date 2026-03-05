@@ -1,0 +1,100 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Erkek Basic Tişört",
+      "category": "Giyim",
+      "price": 249.9,
+      "description": "%100 pamuk, regular fit, yuvarlak yaka erkek basic tişört.",
+      "img": "/images/erkek-basic-tisort.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Kadın Skinny Jean Pantolon",
+      "category": "Giyim",
+      "price": 599.9,
+      "description": "Yüksek bel, esnek kumaşlı kadın skinny jean pantolon.",
+      "img": "/images/kadin-skinny-jean.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Bluetooth Kulaklık",
+      "category": "Elektronik",
+      "price": 1299.0,
+      "description": "Kablosuz bluetooth kulak içi kulaklık, gürültü engelleme özelliği ile.",
+      "img": "/images/bluetooth-kulaklik.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Akıllı Telefon 128GB",
+      "category": "Elektronik",
+      "price": 18999.0,
+      "description": "6.5 inç ekran, 128GB depolama ve üçlü kamera sistemine sahip akıllı telefon.",
+      "img": "/images/products/akilli-telefon-128gb.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Laptop Sırt Çantası",
+      "category": "Aksesuar",
+      "price": 749.9,
+      "description": "15.6 inç bilgisayarlara uygun, su geçirmez kumaşlı laptop sırt çantası.",
+      "img": "/images/products/laptop-sirt-cantasi.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Akıllı Saat",
+      "category": "Elektronik",
+      "price": 2299.0,
+      "description": "Nabız ölçer, adım sayar ve uyku takibi özellikli akıllı saat.",
+      "img": "/images/products/akilli-saat.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Spor Koşu Ayakkabısı",
+      "category": "Ayakkabı",
+      "price": 1399.9,
+      "description": "Koşu ve günlük kullanım için hafif, nefes alabilir spor ayakkabı.",
+      "img": "/images/products/spor-kosu-ayakkabi.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Oyun Konsolu Kablosuz Gamepad",
+      "category": "Elektronik",
+      "price": 899.9,
+      "description": "PC ve oyun konsolları ile uyumlu kablosuz gamepad.",
+      "img": "/images/products/kablosuz-gamepad.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Erkek Spor Eşofman Altı",
+      "category": "Giyim",
+      "price": 429.9,
+      "description": "Lastikli paça, rahat kalıp erkek spor eşofman altı.",
+      "img": "/images/products/erkek-esofman-alti.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Kablosuz Mouse",
+      "category": "Elektronik",
+      "price": 349.9,
+      "description": "Sessiz tıklamalı, taşınabilir, USB alıcılı kablosuz mouse.",
+      "img": "/images/products/kablosuz-mouse.jpg"
+    },
+    {
+      "id": 11,
+      "name": "Erkek Spor Eşofman Altı",
+      "category": "Giyim",
+      "price": 429.9,
+      "description": "Lastikli paça, rahat kalıp erkek spor eşofman altı.",
+      "img": "/images/products/erkek-esofman-alti.jpg"
+    },
+    {
+      "id": 12,
+      "name": "Kablosuz Mouse",
+      "category": "Elektronik",
+      "price": 349.9,
+      "description": "Sessiz tıklamalı, taşınabilir, USB alıcılı kablosuz mouse.",
+      "img": "/images/products/kablosuz-mouse.jpg"
+    }
+  ]
+}
