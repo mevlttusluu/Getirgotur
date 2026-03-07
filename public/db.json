@@ -30,7 +30,7 @@
       "category": "Elektronik",
       "price": 18999.0,
       "description": "6.5 inç ekran, 128GB depolama ve üçlü kamera sistemine sahip akıllı telefon.",
-      "img": "/images/products/akilli-telefon-128gb.jpg"
+      "img": "/images/elefon.jpg"
     },
     {
       "id": 5,
@@ -38,7 +38,7 @@
       "category": "Aksesuar",
       "price": 749.9,
       "description": "15.6 inç bilgisayarlara uygun, su geçirmez kumaşlı laptop sırt çantası.",
-      "img": "/images/products/laptop-sirt-cantasi.jpg"
+      "img": "/images/sırt.jpg"
     },
     {
       "id": 6,
@@ -46,7 +46,7 @@
       "category": "Elektronik",
       "price": 2299.0,
       "description": "Nabız ölçer, adım sayar ve uyku takibi özellikli akıllı saat.",
-      "img": "/images/products/akilli-saat.jpg"
+      "img": "/images/akıllısaat.jpg"
     },
     {
       "id": 7,
@@ -54,7 +54,7 @@
       "category": "Ayakkabı",
       "price": 1399.9,
       "description": "Koşu ve günlük kullanım için hafif, nefes alabilir spor ayakkabı.",
-      "img": "/images/products/spor-kosu-ayakkabi.jpg"
+      "img": "/images/ayakkabı.jpg"
     },
     {
       "id": 8,
@@ -62,7 +62,7 @@
       "category": "Elektronik",
       "price": 899.9,
       "description": "PC ve oyun konsolları ile uyumlu kablosuz gamepad.",
-      "img": "/images/products/kablosuz-gamepad.jpg"
+      "img": "/images/gamepad.jpg"
     },
     {
       "id": 9,
@@ -70,7 +70,7 @@
       "category": "Giyim",
       "price": 429.9,
       "description": "Lastikli paça, rahat kalıp erkek spor eşofman altı.",
-      "img": "/images/products/erkek-esofman-alti.jpg"
+      "img": "/images/eşofman.jpg"
     },
     {
       "id": 10,
@@ -78,23 +78,183 @@
       "category": "Elektronik",
       "price": 349.9,
       "description": "Sessiz tıklamalı, taşınabilir, USB alıcılı kablosuz mouse.",
-      "img": "/images/products/kablosuz-mouse.jpg"
+      "img": "/images/fare.jpg"
     },
     {
       "id": 11,
-      "name": "Erkek Spor Eşofman Altı",
-      "category": "Giyim",
+      "name": "Oyuncu Monitör",
+      "category": "Elektronik",
       "price": 429.9,
-      "description": "Lastikli paça, rahat kalıp erkek spor eşofman altı.",
-      "img": "/images/products/erkek-esofman-alti.jpg"
+      "description": "Yüksek ekran kaitesi,Yüksek kare hız",
+      "img": "/images/ekran.jpg"
     },
     {
       "id": 12,
-      "name": "Kablosuz Mouse",
+      "name": "Kablosuz Kulaklık",
       "category": "Elektronik",
       "price": 349.9,
-      "description": "Sessiz tıklamalı, taşınabilir, USB alıcılı kablosuz mouse.",
-      "img": "/images/products/kablosuz-mouse.jpg"
+      "description": "Yüksek ses kalitesi.",
+      "img": "/images/kulaklık.jpg"
+    },
+    {
+      "id": 13,
+      "name": "Kadın Spor Tişört",
+      "category": "Giyim",
+      "price": 279.9,
+      "description": "Nefes alabilir kumaşlı, spor aktiviteleri için ideal kadın tişört.",
+      "img": "/images/erkek-basic-tisort.jpg"
+    },
+    {
+      "id": 14,
+      "name": "Erkek Denim Ceket",
+      "category": "Giyim",
+      "price": 899.9,
+      "description": "Klasik kesim, dayanıklı kumaşlı erkek denim ceket.",
+      "img": "/images/kadin-skinny-jean.jpg"
+    },
+    {
+      "id": 15,
+      "name": "Bluetooth Hoparlör",
+      "category": "Elektronik",
+      "price": 699.9,
+      "description": "Taşınabilir, su sıçramalarına dayanıklı bluetooth hoparlör.",
+      "img": "/images/gamepad.jpg"
+    },
+    {
+      "id": 16,
+      "name": "Kablosuz Klavye",
+      "category": "Elektronik",
+      "price": 449.9,
+      "description": "Sessiz tuşlara sahip, ince tasarımlı kablosuz klavye.",
+      "img": "/images/fare.jpg"
+    },
+    {
+      "id": 17,
+      "name": "Oyun Kulaklığı",
+      "category": "Elektronik",
+      "price": 1199.0,
+      "description": "Gürültü engelleyici mikrofonlu, konforlu oyun kulaklığı.",
+      "img": "/images/kulaklık.jpg"
+    },
+    {
+      "id": 18,
+      "name": "Sırt Çantası Günlük",
+      "category": "Aksesuar",
+      "price": 599.9,
+      "description": "Günlük kullanım için hafif ve çok gözlü sırt çantası.",
+      "img": "/images/sırt.jpg"
+    },
+    {
+      "id": 19,
+      "name": "Akıllı Bileklik",
+      "category": "Elektronik",
+      "price": 899.0,
+      "description": "Adım sayar, kalori takibi ve uyku analizi yapan akıllı bileklik.",
+      "img": "/images/akıllısaat.jpg"
+    },
+    {
+      "id": 20,
+      "name": "Koşu Ayakkabısı Kadın",
+      "category": "Ayakkabı",
+      "price": 1349.9,
+      "description": "Yastıklamalı tabanlı, hafif kadın koşu ayakkabısı.",
+      "img": "/images/ayakkabı.jpg"
+    },
+    {
+      "id": 21,
+      "name": "Oyun Mouse",
+      "category": "Elektronik",
+      "price": 649.9,
+      "description": "Yüksek hassasiyetli, RGB aydınlatmalı oyuncu mouse.",
+      "img": "/images/fare.jpg"
+    },
+    {
+      "id": 22,
+      "name": "Full HD Monitör",
+      "category": "Elektronik",
+      "price": 2999.0,
+      "description": "23.8 inç, 75Hz yenileme hızına sahip Full HD monitör.",
+      "img": "/images/ekran.jpg"
+    },
+    {
+      "id": 23,
+      "name": "Erkek Eşofman Takımı",
+      "category": "Giyim",
+      "price": 799.9,
+      "description": "Fermuarlı üst ve jogger alt parçadan oluşan eşofman takımı.",
+      "img": "/images/eşofman.jpg"
+    },
+    {
+      "id": 24,
+      "name": "Kablosuz Kulak İçi Kulaklık",
+      "category": "Elektronik",
+      "price": 1599.0,
+      "description": "Şarj kutulu, dokunmatik kontrollü kablosuz kulak içi kulaklık.",
+      "img": "/images/kulaklık.jpg"
+    },
+    {
+      "id": 25,
+      "name": "Dekoratif LED Işık",
+      "category": "Ev & Yaşam",
+      "price": 199.9,
+      "description": "Odanızı aydınlatan sıcak tonlu dekoratif LED ışık şeridi.",
+      "img": "/images/led.jpg"
+    },
+    {
+      "id": 26,
+      "name": "Masaüstü Organizer",
+      "category": "Ofis",
+      "price": 149.9,
+      "description": "Kalem, not kağıdı ve küçük aksesuarlar için çok gözlü masaüstü organizer.",
+      "img": "/images/organizer.jpg"
+    },
+    {
+      "id": 27,
+      "name": "Gaming Mouse Pad",
+      "category": "Oyun",
+      "price": 249.9,
+      "description": "Kaymaz tabanlı, geniş yüzeyli oyun mouse pad.",
+      "img": "/images/pad.jpg"
+    },
+    {
+      "id": 28,
+      "name": "RGB Masa Lambası",
+      "category": "Ev & Yaşam",
+      "price": 329.9,
+      "description": "Renk değiştirebilen, dokunmatik kontrollü RGB masa lambası.",
+      "img": "/images/lamba.jpg"
+    },
+    {
+      "id": 29,
+      "name": "Ofis Sandalyesi Minderi",
+      "category": "Ofis",
+      "price": 219.9,
+      "description": "Bel destekli, ergonomik ofis sandalyesi minderi.",
+      "img": "/images/minder.jpg"
+    },
+    {
+      "id": 30,
+      "name": "Yüz Bakım Seti",
+      "category": "Kişisel Bakım",
+      "price": 459.9,
+      "description": "Temizleyici jel, tonik ve nemlendiriciden oluşan yüz bakım seti.",
+      "img": "/images/yüz.jpg"
+    },
+    {
+      "id": 31,
+      "name": "Oyun Kolu Standı",
+      "category": "Oyun",
+      "price": 189.9,
+      "description": "Gamepad ve kulaklıklar için şık stand.",
+      "img": "/images/kolstandı.jpg"
+    },
+    {
+      "id": 32,
+      "name": "Aromatik Mum Seti",
+      "category": "Ev & Yaşam",
+      "price": 259.9,
+      "description": "Üç farklı kokuya sahip dekoratif aromatik mum seti.",
+      "img": "/images/mum.jpg"
     }
   ]
 }
