@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getProducts } from "../../api/products";
 import { useCart } from "../../context/CartContext";
+import { useFavorites } from "../../context/FavoritesContext";
 import Header from "./Header";
 import Footer from "./footer";
 
@@ -15,6 +16,7 @@ export default function ProductDetail() {
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState("Detaylar");
   const { addToCart } = useCart();
+  const { isFavorite, toggleFavorite } = useFavorites();
 
   useEffect(() => {
     let isMounted = true;
@@ -144,9 +146,10 @@ export default function ProductDetail() {
                 </div>
                 <button
                   type="button"
+                  onClick={() => toggleFavorite(product)}
                   className="text-xs font-semibold text-slate-400 hover:text-rose-500"
                 >
-                  ❤ Favorilere Ekle
+                  {isFavorite(product.id) ? "♥ Favorilerden Çıkar" : "♡ Favorilere Ekle"}
                 </button>
               </div>
 

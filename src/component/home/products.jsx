@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { getProducts } from "../../api/products";
 import { useCart } from "../../context/CartContext";
+import { useFavorites } from "../../context/FavoritesContext";
 
 export default function ProductsSection() {
   const [products, setProducts] = useState([]);
@@ -11,6 +12,7 @@ export default function ProductsSection() {
   const [searchParams] = useSearchParams();
   const selectedCategory = searchParams.get("category");
   const { addToCart } = useCart();
+  const { isFavorite, toggleFavorite } = useFavorites();
 
   const itemsPerPage = 12;
 
@@ -143,13 +145,27 @@ export default function ProductsSection() {
                   maximumFractionDigits: 2,
                 })}
               </span>
-              <button
-                type="button"
-                onClick={() => addToCart(product)}
-                className="inline-flex items-center gap-1 rounded-full bg-violet-600 px-3 py-1.5 text-[11px] font-semibold text-white shadow-sm transition hover:bg-violet-700 hover:shadow-md"
-              >
-                <span>Sepete Ekle</span>
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => toggleFavorite(product)}
+                  className={`inline-flex items-center gap-1 rounded-full border px-3 py-1.5 text-[11px] font-semibold shadow-sm transition ${
+                    isFavorite(product.id)
+                      ? "border-rose-400 bg-rose-50 text-rose-600 hover:bg-rose-100"
+                      : "border-slate-200 bg-white text-slate-700 hover:border-rose-300 hover:bg-rose-50"
+                  }`}
+                >
+                  <span>{isFavorite(product.id) ? "♥" : "♡"}</span>
+                  <span>Favori</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => addToCart(product)}
+                  className="inline-flex items-center gap-1 rounded-full bg-violet-600 px-3 py-1.5 text-[11px] font-semibold text-white shadow-sm transition hover:bg-violet-700 hover:shadow-md"
+                >
+                  <span>Sepete Ekle</span>
+                </button>
+              </div>
             </div>
           </article>
         ))}

@@ -75,6 +75,21 @@ export default function HomePage() {
         {/* Products */}
         <ProductsSection />
 
+        {/* Reklam Pankartı */}
+        <div className="my-10 flex justify-center">
+          <img
+            src="/reklam.jpg"
+            alt="Reklam Pankartı"
+            className="w-full max-w-5xl h-130 object-cover rounded-xl shadow-lg"
+          />
+        </div>
+
+        {/* How it works */}
+        <section
+          id="how-it-works"
+          className="bg-slate-50 px-6 pb-14 md:px-12 md:pb-16"
+        ></section>
+
         {/* How it works */}
         <section
           id="how-it-works"
@@ -122,7 +137,7 @@ export default function HomePage() {
 
         {/* Contact */}
         <section id="contact" className="px-6 pb-14 md:px-12 md:pb-16">
-            <div className="mx-auto max-w-xl rounded-3xl bg-linear-to-br from-violet-700 to-indigo-500 px-8 py-10 text-center text-white shadow-2xl">
+          <div className="mx-auto max-w-xl rounded-3xl bg-linear-to-br from-violet-700 to-indigo-500 px-8 py-10 text-center text-white shadow-2xl">
             <h2 className="mb-3 text-2xl font-extrabold">
               İş ortağımız olmak ister misin?
             </h2>

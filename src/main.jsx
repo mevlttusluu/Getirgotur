@@ -4,13 +4,16 @@ import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 import { CartProvider } from './context/CartContext.jsx'
+import { FavoritesProvider } from "./context/FavoritesContext.jsx";
 
 const root = createRoot(document.getElementById('root'))
 root.render(
   <StrictMode>
     <BrowserRouter>
       <CartProvider>
-        <App />
+        <FavoritesProvider>
+          <App />
+        </FavoritesProvider>
       </CartProvider>
     </BrowserRouter>
   </StrictMode>,
