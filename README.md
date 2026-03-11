@@ -1,3 +1,11 @@
+## Görsel tanıtım
+
+[Ana sayfa tanıtımı](görsel_tanıtım/ana_sayfa.png)
+
+[Sepet sayfası tanıtımı](görsel_tanıtım/sepet_detayı.png)
+
+[Ürün kart detayı](görsel_tanıtım/ürün_detayı.png)
+
 ## 📘 Projenin Amacı
 
 Projenin amacı PDF dosyasında detaylı olarak açıklanmıştır.
