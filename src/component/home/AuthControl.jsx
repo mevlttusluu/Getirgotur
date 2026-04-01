@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const AuthControl = () => {
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
@@ -11,6 +12,7 @@ const AuthControl = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [authError, setAuthError] = useState("");
   const [authMessage, setAuthMessage] = useState("");
+  const [loginType, setLoginType] = useState("user");
 
   useEffect(() => {
     try {
@@ -24,6 +26,7 @@ const AuthControl = () => {
             name: parsed.name,
             email: parsed.email,
             phone: parsed.phone,
+            role: parsed.role || localStorage.getItem("gg_role") || "user",
           });
         }
       }
@@ -51,6 +54,7 @@ const AuthControl = () => {
     resetForm();
     setIsRegisterOpen(false);
     setIsLoginOpen(true);
+    setLoginType("user");
   };
 
   const closeModals = () => {
@@ -72,7 +76,22 @@ const AuthControl = () => {
       const userData = { name, phone, email, password };
 
       try {
-        localStorage.setItem("gg_user", JSON.stringify(userData));
+        const usersRaw = localStorage.getItem("gg_users");
+        const users = usersRaw ? JSON.parse(usersRaw) : [];
+        const alreadyExists = users.some((user) => user.email === email);
+        if (alreadyExists) {
+          setAuthError("Bu e-posta ile zaten kayıt var.");
+          return;
+        }
+
+        localStorage.setItem(
+          "gg_users",
+          JSON.stringify([{ ...userData, role: "user" }, ...users])
+        );
+        localStorage.setItem(
+          "gg_user",
+          JSON.stringify({ ...userData, role: "user" })
+        );
         setAuthMessage("Kayıt başarılı. Giriş yapmak için bilgilerinizi kullanın.");
       } catch {
         setAuthError(
@@ -86,19 +105,50 @@ const AuthControl = () => {
       }
 
       try {
-        const storedUser = localStorage.getItem("gg_user");
-        if (!storedUser) {
-          setAuthError("Kayıtlı bir kullanıcı bulunamadı. Önce kayıt olun.");
+        if (loginType === "admin") {
+          if (email.trim().toLowerCase() !== "admin@gmail.com") {
+            setAuthError("Admin girişi sadece admin@gmail.com ile yapılabilir.");
+            return;
+          }
+
+          const adminUser = {
+            name: "Admin",
+            email: "admin@gmail.com",
+            phone: "-",
+            role: "admin",
+          };
+          localStorage.setItem("gg_loggedIn", "true");
+          localStorage.setItem("gg_role", "admin");
+          localStorage.setItem("gg_user", JSON.stringify(adminUser));
+          setCurrentUser(adminUser);
+          setAuthMessage("Admin girişi başarılı.");
+          setTimeout(() => {
+            closeModals();
+          }, 800);
           return;
         }
 
-        const parsed = JSON.parse(storedUser);
-        if (parsed.email === email && parsed.password === password) {
+        const usersRaw = localStorage.getItem("gg_users");
+        const users = usersRaw ? JSON.parse(usersRaw) : [];
+        if (!users.length) {
+          setAuthError("Kayıtlı bir kullanıcı bulunamadı. Önce kayıt olun.");
+          return;
+        }
+        const parsed = users.find(
+          (user) => user.email === email && user.password === password
+        );
+        if (parsed) {
           localStorage.setItem("gg_loggedIn", "true");
+          localStorage.setItem("gg_role", parsed.role || "user");
+          localStorage.setItem(
+            "gg_user",
+            JSON.stringify({ ...parsed, role: parsed.role || "user" })
+          );
           setCurrentUser({
             name: parsed.name,
             email: parsed.email,
             phone: parsed.phone,
+            role: parsed.role || "user",
           });
           setAuthMessage("Giriş başarılı.");
           setTimeout(() => {
@@ -116,6 +166,7 @@ const AuthControl = () => {
   const handleLogout = () => {
     try {
       localStorage.setItem("gg_loggedIn", "false");
+      localStorage.removeItem("gg_role");
     } catch {
       // yok say
     }
@@ -178,6 +229,24 @@ const AuthControl = () => {
                   </div>
                 )}
               </div>
+
+              <Link
+                to="/user-panel"
+                onClick={() => setIsProfileOpen(false)}
+                className="mt-3 flex w-full items-center justify-center rounded-xl border border-violet-200 bg-violet-50 px-3 py-1.5 text-[11px] font-semibold text-violet-700 shadow-sm transition hover:bg-violet-100"
+              >
+                Kullanıcı Paneli
+              </Link>
+              {(currentUser?.role === "admin" ||
+                currentUser?.email?.toLowerCase() === "admin@gmail.com") && (
+                <Link
+                  to="/admin-panel"
+                  onClick={() => setIsProfileOpen(false)}
+                  className="mt-2 flex w-full items-center justify-center rounded-xl border border-slate-200 bg-slate-50 px-3 py-1.5 text-[11px] font-semibold text-slate-700 shadow-sm transition hover:bg-slate-100"
+                >
+                  Admin Paneli
+                </Link>
+              )}
 
               <button
                 type="button"
@@ -250,9 +319,40 @@ const AuthControl = () => {
                   />
                 </>
               )}
+              {isLoginOpen && (
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setLoginType("user")}
+                    className={`rounded-lg px-3 py-2 text-xs font-semibold transition ${
+                      loginType === "user"
+                        ? "bg-violet-600 text-white"
+                        : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                    }`}
+                  >
+                    Kullanıcı Girişi
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setLoginType("admin")}
+                    className={`rounded-lg px-3 py-2 text-xs font-semibold transition ${
+                      loginType === "admin"
+                        ? "bg-slate-900 text-white"
+                        : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                    }`}
+                  >
+                    Admin Girişi
+                  </button>
+                </div>
+              )}
+
               <input
                 type="email"
-                placeholder="E-posta"
+                placeholder={
+                  isLoginOpen && loginType === "admin"
+                    ? "admin@gmail.com"
+                    : "E-posta"
+                }
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500"
@@ -280,7 +380,11 @@ const AuthControl = () => {
                 type="submit"
                 className="mt-2 w-full rounded-lg bg-gradient-to-r from-violet-600 to-indigo-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:from-violet-500 hover:to-indigo-400"
               >
-                {isRegisterOpen ? "Kayıt Ol" : "Giriş Yap"}
+                {isRegisterOpen
+                  ? "Kayıt Ol"
+                  : loginType === "admin"
+                    ? "Admin Girişi"
+                    : "Kullanıcı Girişi"}
               </button>
             </form>
           </div>
