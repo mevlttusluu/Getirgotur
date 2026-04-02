@@ -7,6 +7,7 @@ import {
   getProducts,
   updateProduct,
 } from "../api/products";
+import { readOrders } from "../utils/orderStorage";
 
 const emptyForm = {
   name: "",
@@ -33,6 +34,7 @@ function readUsers() {
 export default function AdminPanelPage() {
   const [products, setProducts] = useState([]);
   const [users, setUsers] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [form, setForm] = useState(emptyForm);
   const [editingId, setEditingId] = useState(null);
@@ -42,6 +44,7 @@ export default function AdminPanelPage() {
     const [productData] = await Promise.all([getProducts()]);
     setProducts(productData);
     setUsers(readUsers());
+    setOrders(readOrders());
   };
 
   useEffect(() => {
@@ -57,6 +60,8 @@ export default function AdminPanelPage() {
     () => products.filter((item) => Number(item.stock ?? 0) <= 5),
     [products]
   );
+
+  const orderCount = orders.length;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -270,6 +275,97 @@ export default function AdminPanelPage() {
                 )}
               </div>
 
+              <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+                <div className="mb-3 flex items-center justify-between gap-3">
+                  <div>
+                    <h2 className="text-sm font-bold text-slate-900">
+                      Tum Siparisler
+                    </h2>
+                    <p className="mt-1 text-xs text-slate-500">
+                      Checkout ekranindan gelen siparisler
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+                      {orderCount} siparis
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setOrders(readOrders())}
+                      className="rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+                    >
+                      Yenile
+                    </button>
+                  </div>
+                </div>
+
+                {orderCount === 0 ? (
+                  <div className="rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-4 text-xs text-slate-600">
+                    Henuz siparis yok.
+                  </div>
+                ) : (
+                  <div className="max-h-[360px] overflow-auto rounded-xl border border-slate-100">
+                    <table className="w-full text-left text-xs">
+                      <thead className="sticky top-0 bg-slate-100 text-slate-700">
+                        <tr>
+                          <th className="px-3 py-2">Siparis</th>
+                          <th className="px-3 py-2">Tarih</th>
+                          <th className="px-3 py-2">Musteri</th>
+                          <th className="px-3 py-2">Odeme</th>
+                          <th className="px-3 py-2">Toplam</th>
+                          <th className="px-3 py-2">Urun</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {orders.map((order) => (
+                          <tr key={order.orderId} className="border-t border-slate-100">
+                            <td className="px-3 py-2 font-semibold text-slate-800">
+                              #{order.orderId}
+                            </td>
+                            <td className="px-3 py-2 text-slate-600">
+                              {order.createdAt
+                                ? new Date(order.createdAt).toLocaleString("tr-TR")
+                                : "-"}
+                            </td>
+                            <td className="px-3 py-2 text-slate-600">
+                              <p className="font-semibold text-slate-800">
+                                {order.customer?.name ?? "-"}
+                              </p>
+                              <p className="text-[11px] text-slate-500">
+                                {order.customer?.email ?? "-"}
+                              </p>
+                            </td>
+                            <td className="px-3 py-2">
+                              <span
+                                className={`rounded-full px-2 py-1 font-semibold ${
+                                  order.paymentMethod === "cash"
+                                    ? "bg-amber-100 text-amber-700"
+                                    : "bg-indigo-100 text-indigo-700"
+                                }`}
+                              >
+                                {order.paymentMethod === "cash"
+                                  ? "Kapida"
+                                  : "Kart"}
+                              </span>
+                            </td>
+                            <td className="px-3 py-2 text-slate-600">
+                              {Number(order.totalPrice ?? 0).toLocaleString("tr-TR", {
+                                style: "currency",
+                                currency: "TRY",
+                                maximumFractionDigits: 2,
+                              })}
+                            </td>
+                            <td className="px-3 py-2 text-slate-600">
+                              {order.itemCount ?? (order.items ? order.items.length : 0)}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
+
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
                   <h3 className="text-sm font-bold text-slate-900">Stok Takibi</h3>
@@ -307,8 +403,7 @@ export default function AdminPanelPage() {
                     )}
                     {users.map((user, index) => (
                       <div
-                        // eslint-disable-next-line react/no-array-index-key
-                        key={`${user.email}-${index}`}
+                        key={user.email || user.phone || `${user.name || "user"}-${index}`}
                         className="rounded-xl bg-slate-50 px-3 py-2 text-xs"
                       >
                         <p className="font-semibold text-slate-800">{user.name || "-"}</p>
