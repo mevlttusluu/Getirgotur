@@ -4,6 +4,12 @@
 
 [veri tabanı](./veri_tabanı.png)
 
+# sahta veri üretme kütüphaneleri ile ilgili çalışma araştırma
+
+- gerekli araştırma yı birbirinden ffarklı araçlar ile araştırıp yapay zeka kullanarak projeden bağımsız fake veri denemelri yaptım.
+  [docs](./docs/fake-data-report.md)
+  [tools](./tools)
+
 ## Görsel tanıtım
 
 [Ana sayfa tanıtımı](görsel_tanıtım/ana_sayfa.png)
