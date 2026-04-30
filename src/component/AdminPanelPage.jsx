@@ -7,7 +7,8 @@ import {
   getProducts,
   updateProduct,
 } from "../api/products";
-import { readOrders } from "../utils/orderStorage";
+import axiosClient from "../api/axiosClient";
+import { getAllOrders } from "../api/orders";
 
 const emptyForm = {
   name: "",
@@ -17,19 +18,6 @@ const emptyForm = {
   img: "",
   description: "",
 };
-
-function readUsers() {
-  try {
-    const usersRaw = localStorage.getItem("gg_users");
-    const users = usersRaw ? JSON.parse(usersRaw) : [];
-    if (users.length) return users;
-
-    const singleUserRaw = localStorage.getItem("gg_user");
-    return singleUserRaw ? [JSON.parse(singleUserRaw)] : [];
-  } catch {
-    return [];
-  }
-}
 
 export default function AdminPanelPage() {
   const [products, setProducts] = useState([]);
@@ -41,10 +29,14 @@ export default function AdminPanelPage() {
   const [message, setMessage] = useState("");
 
   const reloadData = async () => {
-    const [productData] = await Promise.all([getProducts()]);
+    const [productData, usersRes, ordersData] = await Promise.all([
+      getProducts(),
+      axiosClient.get("/api/users"),
+      getAllOrders(),
+    ]);
     setProducts(productData);
-    setUsers(readUsers());
-    setOrders(readOrders());
+    setUsers(usersRes.data?.users ?? []);
+    setOrders(ordersData);
   };
 
   useEffect(() => {
@@ -291,7 +283,7 @@ export default function AdminPanelPage() {
                     </span>
                     <button
                       type="button"
-                      onClick={() => setOrders(readOrders())}
+                      onClick={reloadData}
                       className="rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
                     >
                       Yenile

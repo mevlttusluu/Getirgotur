@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
-import { addOrder } from "../utils/orderStorage";
+import { createOrder } from "../api/orders";
 
 function isValidEmail(email) {
   // Basit doğrulama yeterli: gerçek projede API doğrulaması önerilir.
@@ -79,12 +79,10 @@ export default function CheckoutPage() {
     await new Promise((r) => setTimeout(r, 300));
 
     if (form.paymentMethod === "cash") {
-      const order = {
+      const order = await createOrder({
         ...orderDraft,
         paymentMethod: "cash",
-        orderId: `GG-${Date.now()}`,
-      };
-      addOrder(order);
+      });
       clearCart();
       navigate("/order-success", { state: { order } });
       return;
@@ -140,7 +138,7 @@ export default function CheckoutPage() {
                           setForm((prev) => ({ ...prev, name: e.target.value }))
                         }
                         className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium outline-none transition focus:border-violet-500"
-                        placeholder="Örn: Ayşe Yılmaz"
+                        placeholder="Örn: Adnan Altıntaş"
                         required
                       />
                     </label>
@@ -331,7 +329,7 @@ export default function CheckoutPage() {
                             style: "currency",
                             currency: "TRY",
                             maximumFractionDigits: 2,
-                          }
+                          },
                         )}
                       </p>
                     </div>
@@ -345,4 +343,3 @@ export default function CheckoutPage() {
     </div>
   );
 }
-

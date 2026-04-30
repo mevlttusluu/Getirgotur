@@ -1,32 +1,45 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "./home/Header";
 import Footer from "./home/footer";
-import { readOrders } from "../utils/orderStorage";
-
-
-function readUserFromStorage() {
-  try {
-    const rawUser = localStorage.getItem("gg_user");
-    const loggedIn = localStorage.getItem("gg_loggedIn") === "true";
-    if (!rawUser || !loggedIn) return null;
-    const parsed = JSON.parse(rawUser);
-    return {
-      name: parsed.name || "",
-      email: parsed.email || "",
-      phone: parsed.phone || "",
-    };
-  } catch {
-    return null;
-  }
-}
+import axiosClient from "../api/axiosClient";
+import { getMe, logout } from "../api/auth";
+import { getMyOrders } from "../api/orders";
 
 export default function UserPanelPage() {
   const navigate = useNavigate();
-  const [user, setUser] = useState(() => readUserFromStorage());
-  const [form, setForm] = useState(() => readUserFromStorage() ?? ({ name: "", email: "", phone: "" }));
+  const [user, setUser] = useState(null);
+  const [form, setForm] = useState({ name: "", email: "", phone: "" });
   const [message, setMessage] = useState("");
   const [selectedOrderId, setSelectedOrderId] = useState(null);
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    let alive = true;
+    (async () => {
+      try {
+        const me = await getMe();
+        if (!alive) return;
+        setUser(me);
+        setForm({
+          name: me?.name || "",
+          email: me?.email || "",
+          phone: me?.phone || "",
+        });
+        if (me) {
+          const myOrders = await getMyOrders();
+          if (!alive) return;
+          setOrders(myOrders);
+        }
+      } catch {
+        if (!alive) return;
+        setUser(null);
+      }
+    })();
+    return () => {
+      alive = false;
+    };
+  }, []);
 
   const initials = useMemo(() => {
     if (!form.name) return "U";
@@ -38,13 +51,7 @@ export default function UserPanelPage() {
       .toUpperCase();
   }, [form.name]);
 
-  const userOrders = useMemo(() => {
-    const email = (user?.email || "").trim().toLowerCase();
-    if (!email) return [];
-    return readOrders().filter(
-      (order) => (order?.customer?.email || "").trim().toLowerCase() === email
-    );
-  }, [user?.email]);
+  const userOrders = orders;
 
   const selectedOrder = useMemo(() => {
     if (!selectedOrderId) return null;
@@ -53,21 +60,21 @@ export default function UserPanelPage() {
 
   const orderCount = userOrders.length;
 
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
     try {
-      const existingRaw = localStorage.getItem("gg_user");
-      const existing = existingRaw ? JSON.parse(existingRaw) : {};
-      localStorage.setItem(
-        "gg_user",
-        JSON.stringify({
-          ...existing,
-          name: form.name,
-          email: form.email,
-          phone: form.phone,
-        })
-      );
-      setUser({ ...form });
+      const res = await axiosClient.put("/api/users/me", {
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+      });
+      const updated = res.data?.user ?? null;
+      setUser(updated);
+      setForm({
+        name: updated?.name || "",
+        email: updated?.email || "",
+        phone: updated?.phone || "",
+      });
       setMessage("Profil bilgileri kaydedildi.");
       setTimeout(() => setMessage(""), 1800);
     } catch {
@@ -76,12 +83,13 @@ export default function UserPanelPage() {
   };
 
   const handleLogout = () => {
-    try {
-      localStorage.setItem("gg_loggedIn", "false");
-    } catch {
-      // ignore
-    }
-    navigate("/page/1");
+    (async () => {
+      try {
+        await logout();
+      } finally {
+        navigate("/page/1");
+      }
+    })();
   };
 
   if (!user) {
@@ -153,7 +161,7 @@ export default function UserPanelPage() {
                 Profil Bilgileri
               </h2>
               <p className="mt-1 text-xs text-slate-500">
-                Bilgilerini güncelle, değişiklikler tarayıcıda saklansın.
+                Bilgilerini güncelle, değişiklikler veritabanına kaydedilir.
               </p>
               <form className="mt-5 grid gap-4 md:grid-cols-2" onSubmit={handleSave}>
                 <label className="flex flex-col gap-1 text-xs font-semibold text-slate-700">

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
-import { addOrder } from "../utils/orderStorage";
+import { createOrder } from "../api/orders";
 
 export default function CardPaymentPage() {
   const navigate = useNavigate();
@@ -66,17 +66,14 @@ export default function CardPaymentPage() {
 
     await new Promise((r) => setTimeout(r, 350));
 
-    const finalOrder = {
+    const finalOrder = await createOrder({
       ...orderDraft,
       paymentMethod: "card",
       paymentDetails: {
         cardHolder: form.cardHolder.trim(),
         last4: form.cardNumber.replace(/\s+/g, "").slice(-4),
       },
-      orderId: `GG-${Date.now()}`,
-    };
-
-    addOrder(finalOrder);
+    });
     clearCart();
     navigate("/order-success", { state: { order: finalOrder } });
   };
@@ -108,7 +105,7 @@ export default function CardPaymentPage() {
                           }))
                         }
                         className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium outline-none transition focus:border-violet-500"
-                        placeholder="Örn: Ayşe Yılmaz"
+                        placeholder="Örn: Adnan Altıntaş"
                         required
                       />
                     </label>
@@ -250,4 +247,3 @@ export default function CardPaymentPage() {
     </div>
   );
 }
-

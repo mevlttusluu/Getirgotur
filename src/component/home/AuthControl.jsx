@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { getMe, login, logout, register } from "../../api/auth";
 
 const AuthControl = () => {
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
@@ -15,24 +16,20 @@ const AuthControl = () => {
   const [loginType, setLoginType] = useState("user");
 
   useEffect(() => {
-    try {
-      const storedUser = localStorage.getItem("gg_user");
-      const storedLoggedIn = localStorage.getItem("gg_loggedIn");
-
-      if (storedUser) {
-        const parsed = JSON.parse(storedUser);
-        if (storedLoggedIn === "true") {
-          setCurrentUser({
-            name: parsed.name,
-            email: parsed.email,
-            phone: parsed.phone,
-            role: parsed.role || localStorage.getItem("gg_role") || "user",
-          });
-        }
+    let alive = true;
+    (async () => {
+      try {
+        const me = await getMe();
+        if (!alive) return;
+        setCurrentUser(me);
+      } catch {
+        if (!alive) return;
+        setCurrentUser(null);
       }
-    } catch {
-      // localStorage erişim hatası olursa sessizce geç
-    }
+    })();
+    return () => {
+      alive = false;
+    };
   }, []);
 
   const resetForm = () => {
@@ -62,7 +59,7 @@ const AuthControl = () => {
     setIsLoginOpen(false);
   };
 
-  const handleAuthSubmit = (e) => {
+  const handleAuthSubmit = async (e) => {
     e.preventDefault();
     setAuthError("");
     setAuthMessage("");
@@ -73,30 +70,15 @@ const AuthControl = () => {
         return;
       }
 
-      const userData = { name, phone, email, password };
-
       try {
-        const usersRaw = localStorage.getItem("gg_users");
-        const users = usersRaw ? JSON.parse(usersRaw) : [];
-        const alreadyExists = users.some((user) => user.email === email);
-        if (alreadyExists) {
-          setAuthError("Bu e-posta ile zaten kayıt var.");
-          return;
-        }
-
-        localStorage.setItem(
-          "gg_users",
-          JSON.stringify([{ ...userData, role: "user" }, ...users])
-        );
-        localStorage.setItem(
-          "gg_user",
-          JSON.stringify({ ...userData, role: "user" })
-        );
-        setAuthMessage("Kayıt başarılı. Giriş yapmak için bilgilerinizi kullanın.");
+        const user = await register({ name, phone, email, password });
+        setCurrentUser(user);
+        setAuthMessage("Kayıt başarılı.");
+        setTimeout(() => {
+          closeModals();
+        }, 800);
       } catch {
-        setAuthError(
-          "Bilgiler kaydedilemedi. Tarayıcı ayarlarını kontrol edin.",
-        );
+        setAuthError("Bu e-posta ile zaten kayıt var veya kayıt başarısız.");
       }
     } else if (isLoginOpen) {
       if (!email || !password) {
@@ -105,73 +87,31 @@ const AuthControl = () => {
       }
 
       try {
-        if (loginType === "admin") {
-          if (email.trim().toLowerCase() !== "admin@gmail.com") {
-            setAuthError("Admin girişi sadece admin@gmail.com ile yapılabilir.");
-            return;
-          }
-
-          const adminUser = {
-            name: "Admin",
-            email: "admin@gmail.com",
-            phone: "-",
-            role: "admin",
-          };
-          localStorage.setItem("gg_loggedIn", "true");
-          localStorage.setItem("gg_role", "admin");
-          localStorage.setItem("gg_user", JSON.stringify(adminUser));
-          setCurrentUser(adminUser);
-          setAuthMessage("Admin girişi başarılı.");
-          setTimeout(() => {
-            closeModals();
-          }, 800);
+        if (loginType === "admin" && email.trim().toLowerCase() !== "admin@gmail.com") {
+          setAuthError("Admin girişi sadece admin@gmail.com ile yapılabilir.");
           return;
         }
-
-        const usersRaw = localStorage.getItem("gg_users");
-        const users = usersRaw ? JSON.parse(usersRaw) : [];
-        if (!users.length) {
-          setAuthError("Kayıtlı bir kullanıcı bulunamadı. Önce kayıt olun.");
-          return;
-        }
-        const parsed = users.find(
-          (user) => user.email === email && user.password === password
-        );
-        if (parsed) {
-          localStorage.setItem("gg_loggedIn", "true");
-          localStorage.setItem("gg_role", parsed.role || "user");
-          localStorage.setItem(
-            "gg_user",
-            JSON.stringify({ ...parsed, role: parsed.role || "user" })
-          );
-          setCurrentUser({
-            name: parsed.name,
-            email: parsed.email,
-            phone: parsed.phone,
-            role: parsed.role || "user",
-          });
-          setAuthMessage("Giriş başarılı.");
-          setTimeout(() => {
-            closeModals();
-          }, 800);
-        } else {
-          setAuthError("E-posta veya şifre hatalı.");
-        }
+        const user = await login({ email, password });
+        setCurrentUser(user);
+        setAuthMessage(loginType === "admin" ? "Admin girişi başarılı." : "Giriş başarılı.");
+        setTimeout(() => {
+          closeModals();
+        }, 800);
       } catch {
-        setAuthError("Giriş sırasında bir hata oluştu.");
+        setAuthError("E-posta veya şifre hatalı.");
       }
     }
   };
 
   const handleLogout = () => {
-    try {
-      localStorage.setItem("gg_loggedIn", "false");
-      localStorage.removeItem("gg_role");
-    } catch {
-      // yok say
-    }
-    setCurrentUser(null);
-    setIsProfileOpen(false);
+    (async () => {
+      try {
+        await logout();
+      } finally {
+        setCurrentUser(null);
+        setIsProfileOpen(false);
+      }
+    })();
   };
 
   return (

@@ -1,8 +1,19 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import {
+  Link,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 import { getProducts } from "../../api/products";
 import { useCart } from "../../context/CartContext";
 import { useFavorites } from "../../context/FavoritesContext";
+
+function normalizeTr(value) {
+  return String(value ?? "")
+    .trim()
+    .toLocaleLowerCase("tr-TR");
+}
 
 export default function ProductsSection() {
   const [products, setProducts] = useState([]);
@@ -11,10 +22,39 @@ export default function ProductsSection() {
   const { page } = useParams();
   const [searchParams] = useSearchParams();
   const selectedCategory = searchParams.get("category");
+  const qParam = searchParams.get("q") ?? "";
+  const [query, setQuery] = useState(qParam);
+  const navigate = useNavigate();
   const { addToCart } = useCart();
   const { isFavorite, toggleFavorite } = useFavorites();
 
   const itemsPerPage = 12;
+
+  useEffect(() => {
+    setQuery(qParam);
+  }, [qParam]);
+
+  useEffect(() => {
+    const handle = window.setTimeout(() => {
+      const next = new URLSearchParams(searchParams);
+      const trimmed = query.trim();
+
+      if (trimmed) {
+        next.set("q", trimmed);
+      } else {
+        next.delete("q");
+      }
+
+      const nextQueryString = next.toString();
+      const currentQueryString = searchParams.toString();
+
+      if (nextQueryString !== currentQueryString) {
+        navigate(`/page/1${nextQueryString ? `?${nextQueryString}` : ""}`);
+      }
+    }, 250);
+
+    return () => window.clearTimeout(handle);
+  }, [navigate, query, searchParams]);
 
   useEffect(() => {
     let isMounted = true;
@@ -44,15 +84,26 @@ export default function ProductsSection() {
   }, []);
 
   const pagination = useMemo(() => {
-    const sourceProducts = selectedCategory
+    const byCategory = selectedCategory
       ? products.filter((p) => p.category === selectedCategory)
       : products;
+
+    const normalizedQuery = normalizeTr(qParam);
+    const sourceProducts = normalizedQuery
+      ? byCategory.filter((p) => {
+          const haystack = `${p.name ?? ""} ${p.description ?? ""} ${
+            p.category ?? ""
+          }`;
+          return normalizeTr(haystack).includes(normalizedQuery);
+        })
+      : byCategory;
 
     if (!sourceProducts.length) {
       return {
         currentPage: 1,
         totalPages: 1,
         paginatedProducts: [],
+        filteredCount: 0,
       };
     }
 
@@ -61,7 +112,7 @@ export default function ProductsSection() {
 
     const totalPages = Math.max(
       1,
-      Math.ceil(sourceProducts.length / itemsPerPage)
+      Math.ceil(sourceProducts.length / itemsPerPage),
     );
 
     if (currentPage > totalPages) {
@@ -72,8 +123,19 @@ export default function ProductsSection() {
     const endIndex = startIndex + itemsPerPage;
     const paginatedProducts = sourceProducts.slice(startIndex, endIndex);
 
-    return { currentPage, totalPages, paginatedProducts };
-  }, [page, products, selectedCategory]);
+    return {
+      currentPage,
+      totalPages,
+      paginatedProducts,
+      filteredCount: sourceProducts.length,
+    };
+  }, [page, products, qParam, selectedCategory]);
+
+  const pageHref = useMemo(() => {
+    const queryString = searchParams.toString();
+    return (pageNumber) =>
+      `/page/${pageNumber}${queryString ? `?${queryString}` : ""}`;
+  }, [searchParams]);
 
   if (loading) {
     return (
@@ -99,9 +161,52 @@ export default function ProductsSection() {
 
   return (
     <section className="bg-slate-50 px-9 pb-12 pt-8 md:px-12">
-      <h2 className="mb-4 text-lg font-extrabold text-slate-900">
-        Öne Çıkan Ürünler
-      </h2>
+      <div className="mb-6 flex flex-col items-center gap-3 text-center">
+        <div className="w-full max-w-xl">
+          <div className="group relative">
+            <div className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-slate-400 transition group-focus-within:text-violet-600">
+              <svg
+                viewBox="0 0 24 24"
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M21 21l-4.35-4.35" />
+                <circle cx="11" cy="11" r="7" />
+              </svg>
+            </div>
+
+            <input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Ürün ara (ör. ‘kulaklık’, ‘ayakkabı’)"
+              className="w-full rounded-2xl border border-slate-200 bg-white py-3 pl-10 pr-10 text-sm text-slate-900 shadow-sm outline-none transition focus:border-violet-600 focus:ring-4 focus:ring-violet-500/15"
+              type="search"
+            />
+
+            {query.trim().length > 0 && (
+              <button
+                type="button"
+                onClick={() => setQuery("")}
+                className="absolute inset-y-0 right-2 inline-flex items-center justify-center rounded-xl px-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900"
+                aria-label="Aramayı temizle"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M18 6L6 18" />
+                  <path d="M6 6l12 12" />
+                </svg>
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
 
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4 mx-15">
         {pagination.paginatedProducts.map((product) => (
@@ -171,10 +276,23 @@ export default function ProductsSection() {
         ))}
       </div>
 
+      {!pagination.paginatedProducts.length && (
+        <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
+          <div className="text-sm font-bold text-slate-900">
+            Sonuç bulunamadı
+          </div>
+          <div className="mt-1 text-xs text-slate-500">
+            {qParam.trim()
+              ? "Farklı bir arama yapmayı dene veya filtreleri temizle."
+              : "Bu filtrelerle ürün bulunamadı."}
+          </div>
+        </div>
+      )}
+
       {pagination.totalPages > 1 && (
         <div className="mt-8 flex items-center justify-center gap-2">
           <Link
-            to={`/page/${Math.max(1, pagination.currentPage - 1)}`}
+            to={pageHref(Math.max(1, pagination.currentPage - 1))}
             className={`px-3 py-1.5 text-xs font-semibold rounded-full border ${
               pagination.currentPage === 1
                 ? "cursor-not-allowed border-slate-200 text-slate-300"
@@ -192,7 +310,7 @@ export default function ProductsSection() {
             return (
               <Link
                 key={pageNumber}
-                to={`/page/${pageNumber}`}
+                to={pageHref(pageNumber)}
                 className={`px-3 py-1.5 text-xs font-semibold rounded-full border ${
                   isActive
                     ? "border-violet-600 bg-violet-600 text-white"
@@ -205,10 +323,9 @@ export default function ProductsSection() {
           })}
 
           <Link
-            to={`/page/${Math.min(
-              pagination.totalPages,
-              pagination.currentPage + 1
-            )}`}
+            to={pageHref(
+              Math.min(pagination.totalPages, pagination.currentPage + 1),
+            )}
             className={`px-3 py-1.5 text-xs font-semibold rounded-full border ${
               pagination.currentPage === pagination.totalPages
                 ? "cursor-not-allowed border-slate-200 text-slate-300"

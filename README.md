@@ -1,3 +1,9 @@
+## 11. hafta ödevi
+
+[Akış diyagramı](./onbirinci_h_akis_diyagramı.png)
+
+[veri tabanı](./veri_tabanı.png)
+
 ## Görsel tanıtım
 
 [Ana sayfa tanıtımı](görsel_tanıtım/ana_sayfa.png)

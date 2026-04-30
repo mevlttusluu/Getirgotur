@@ -2,35 +2,9 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 const FavoritesContext = createContext(null);
 
-const STORAGE_KEY = "gg_favorites";
-
-function safeParse(json, fallback) {
-  try {
-    return JSON.parse(json) ?? fallback;
-  } catch {
-    return fallback;
-  }
-}
-
 export function FavoritesProvider({ children }) {
   const [favorites, setFavorites] = useState([]);
-
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) setFavorites(safeParse(stored, []));
-    } catch {
-      // localStorage kapalıysa sessizce geç
-    }
-  }, []);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(favorites));
-    } catch {
-      // localStorage kapalıysa sessizce geç
-    }
-  }, [favorites]);
+  useEffect(() => {}, []);
 
   const isFavorite = (id) => favorites.some((item) => item.id === id);
 

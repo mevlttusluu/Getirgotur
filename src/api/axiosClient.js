@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const axiosClient = axios.create({
   baseURL: '',
+  withCredentials: true,
 });
 
 axiosClient.interceptors.response.use(
