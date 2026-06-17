@@ -1,4 +1,7 @@
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { getProducts } from "../api/products";
+import AddToCartButton from "./AddToCartButton";
 import { useFavorites } from "../context/FavoritesContext";
 import { useCart } from "../context/CartContext";
 import Header from "./home/Header";
@@ -7,8 +10,37 @@ import Footer from "./home/footer";
 export default function FavoritesPage() {
   const { favorites, removeFavorite } = useFavorites();
   const { addToCart } = useCart();
+  const [stockById, setStockById] = useState({});
 
-  const hasItems = favorites.length > 0;
+  useEffect(() => {
+    let isMounted = true;
+
+    getProducts()
+      .then((data) => {
+        if (!isMounted) return;
+        const map = {};
+        for (const product of data) {
+          map[product.id] = product.stock ?? 0;
+        }
+        setStockById(map);
+      })
+      .catch(() => {});
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const favoritesWithStock = useMemo(
+    () =>
+      favorites.map((item) => ({
+        ...item,
+        stock: stockById[item.id] ?? item.stock ?? 0,
+      })),
+    [favorites, stockById]
+  );
+
+  const hasItems = favoritesWithStock.length > 0;
 
   return (
     <div className="flex min-h-screen flex-col bg-slate-50 text-slate-900">
@@ -46,7 +78,7 @@ export default function FavoritesPage() {
 
           {hasItems && (
             <div className="space-y-4">
-              {favorites.map((item) => (
+              {favoritesWithStock.map((item) => (
                 <div
                   key={item.id}
                   className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
@@ -85,13 +117,11 @@ export default function FavoritesPage() {
                   </div>
 
                   <div className="flex flex-col items-end gap-2">
-                    <button
-                      type="button"
-                      onClick={() => addToCart(item)}
-                      className="inline-flex items-center rounded-full bg-violet-600 px-4 py-2 text-[11px] font-semibold text-white shadow-sm transition hover:bg-violet-700 hover:shadow-md"
-                    >
-                      Sepete Ekle
-                    </button>
+                    <AddToCartButton
+                      product={item}
+                      onAdd={addToCart}
+                      variant="favorites"
+                    />
                     <button
                       type="button"
                       onClick={() => removeFavorite(item.id)}

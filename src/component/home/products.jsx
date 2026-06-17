@@ -6,6 +6,7 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { getProducts } from "../../api/products";
+import AddToCartButton from "../AddToCartButton";
 import { useCart } from "../../context/CartContext";
 import { useFavorites } from "../../context/FavoritesContext";
 
@@ -263,13 +264,11 @@ export default function ProductsSection() {
                   <span>{isFavorite(product.id) ? "♥" : "♡"}</span>
                   <span>Favori</span>
                 </button>
-                <button
-                  type="button"
-                  onClick={() => addToCart(product)}
-                  className="inline-flex items-center gap-1 rounded-full bg-violet-600 px-3 py-1.5 text-[11px] font-semibold text-white shadow-sm transition hover:bg-violet-700 hover:shadow-md"
-                >
-                  <span>Sepete Ekle</span>
-                </button>
+                <AddToCartButton
+                  product={product}
+                  onAdd={addToCart}
+                  variant="card"
+                />
               </div>
             </div>
           </article>
