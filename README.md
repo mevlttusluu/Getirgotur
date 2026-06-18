@@ -2,6 +2,8 @@
 
 - proje raporu, video , Arşiv ve hazırlık anlatımları.
 - gerekli raporlar teslim ve toold dosyasının içerisindedir.
+  [teslim](./teslim/)
+  [tools](./tools/)
 
 ## 11. hafta ödevi
 
