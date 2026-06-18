@@ -1,0 +1,9 @@
+{
+  "name": "getirgotur-db-backup",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "mongoose": "^8.19.0"
+  }
+}

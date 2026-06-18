@@ -1,0 +1,134 @@
+[
+  {
+    "_id": "69f1353ffe21e9f6b8bba272",
+    "name": "Admin",
+    "phone": "-",
+    "email": "admin@gmail.com",
+    "passwordHash": "$2b$10$3Mo61jLHY1tx01gviK9Xm.NKKesDgyMtxxPe6Rn5pa3cXW7KuLUV6",
+    "role": "admin",
+    "createdAt": "2026-04-28T22:31:27.238Z",
+    "updatedAt": "2026-04-28T22:31:27.238Z",
+    "__v": 0
+  },
+  {
+    "_id": "69f13a96a363bd4a6253f0b3",
+    "name": "ömer karakuş",
+    "phone": "555555555",
+    "email": "karakus@gmail.com",
+    "passwordHash": "$2b$10$tNFgUuDrQjNZmkPekmmL3ONqor7g4CVqpn30f8kordVKG/oupMzB2",
+    "role": "user",
+    "createdAt": "2026-04-28T22:54:14.436Z",
+    "updatedAt": "2026-04-28T22:54:14.436Z",
+    "__v": 0
+  },
+  {
+    "_id": "69f14226a363bd4a6253f18c",
+    "name": "batu",
+    "phone": "6666666666",
+    "email": "batu@gmail.com",
+    "passwordHash": "$2b$10$tiEfbPIhowaOLkg6Xr3p9.UvFTvMpq009z98YgJTy6bqTq/O432zW",
+    "role": "user",
+    "createdAt": "2026-04-28T23:26:30.864Z",
+    "updatedAt": "2026-04-28T23:27:14.738Z",
+    "__v": 0
+  },
+  {
+    "_id": "69f33c5464de4583c660c98f",
+    "name": "Emir Koç",
+    "phone": "0535 919 38 47",
+    "email": "emir.koc.941@mail.test",
+    "passwordHash": "$2b$10$Xl9jGg9x7aujA8TJgCeU8uyYMwKR9Jxtt.e.vHZAv7ueV4Dv3YqNm",
+    "role": "user",
+    "__v": 0,
+    "createdAt": "2026-04-30T11:26:12.365Z",
+    "updatedAt": "2026-04-30T11:26:12.365Z"
+  },
+  {
+    "_id": "69f33c5464de4583c660c98e",
+    "name": "Mert Doğan",
+    "phone": "0530 138 48 30",
+    "email": "mert.dogan.129@mail.test",
+    "passwordHash": "$2b$10$Xl9jGg9x7aujA8TJgCeU8uyYMwKR9Jxtt.e.vHZAv7ueV4Dv3YqNm",
+    "role": "user",
+    "__v": 0,
+    "createdAt": "2026-04-30T11:26:12.363Z",
+    "updatedAt": "2026-04-30T11:26:12.363Z"
+  },
+  {
+    "_id": "69f33ecaa2327a991d2b7044",
+    "name": "Ahmet Yılmaz",
+    "phone": "0536 713 94 61",
+    "email": "ahmet.yilmaz.434@example.com",
+    "passwordHash": "$2b$10$76iQq2vd9wB3ev7ErZ89/eED/teLPKbIYjMgCZA.9ymqc1dYHQQki",
+    "role": "user",
+    "__v": 0,
+    "createdAt": "2026-04-30T11:36:42.648Z",
+    "updatedAt": "2026-04-30T11:36:42.648Z"
+  },
+  {
+    "_id": "69f3408caab0566689298823",
+    "name": "Seda Yıldız",
+    "phone": "0530 848 74 53",
+    "email": "seda.yildiz.467@example.com",
+    "passwordHash": "$2b$10$aLANzbdzajH1NjPZzea3hue3TO36HRahs2wqTImMe9A3s2Evcnhge",
+    "role": "user",
+    "__v": 0,
+    "createdAt": "2026-04-30T11:44:12.801Z",
+    "updatedAt": "2026-04-30T11:44:12.801Z"
+  },
+  {
+    "_id": "69f3412ca735d1fc6d360db9",
+    "name": "Mert Şahin",
+    "phone": "0537 783 18 99",
+    "email": "mert.sahin.720@mail.test",
+    "passwordHash": "$2b$10$QocE4yaI2xbGmvWLf3JCW.UcYape2QehVhpHqXc900L162DeRhZEm",
+    "role": "user",
+    "__v": 0,
+    "createdAt": "2026-04-30T11:46:52.535Z",
+    "updatedAt": "2026-04-30T11:46:52.535Z"
+  },
+  {
+    "_id": "6a332f26393a3f166871fa7d",
+    "name": "adnan",
+    "phone": "5555555555",
+    "email": "altintasadnan9@gmail.com",
+    "passwordHash": "$2b$10$BVCGMyRio7BdecYM31CJ3u77um4hQQG0oY1uZYKUgmI4DFvnN6UgW",
+    "role": "user",
+    "createdAt": "2026-06-17T23:35:02.870Z",
+    "updatedAt": "2026-06-17T23:35:02.870Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a332f7e393a3f166871fa93",
+    "name": "adnan",
+    "phone": "5555555555",
+    "email": "adnan@gmail.com",
+    "passwordHash": "$2b$10$hyNAAhx85wPHgPFinBa4mO1Wz5qJ401pdZvxovQYY01k1pQIaUJpq",
+    "role": "user",
+    "createdAt": "2026-06-17T23:36:30.890Z",
+    "updatedAt": "2026-06-17T23:37:27.030Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a339f21e7b6bea8f6839577",
+    "name": "mevlut",
+    "phone": "5555555555",
+    "email": "mevlut@gmail.com",
+    "passwordHash": "$2b$10$X2jwkOYzxLfL.WIWea9Mhe0JyBLAgXE41FsIpA02tRiqhc0TfaRGi",
+    "role": "user",
+    "createdAt": "2026-06-18T07:32:49.191Z",
+    "updatedAt": "2026-06-18T07:33:10.919Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a33caa8559f1ad96d64607b",
+    "name": "deneme",
+    "phone": "5555555555",
+    "email": "test@gmail.com",
+    "passwordHash": "$2b$10$a./mdDw6XfuVI12mfQk9lOPjhvDe3dHmhNe9/z/efbSY1hWCPYTXO",
+    "role": "user",
+    "createdAt": "2026-06-18T10:38:32.744Z",
+    "updatedAt": "2026-06-18T10:40:25.941Z",
+    "__v": 0
+  }
+]

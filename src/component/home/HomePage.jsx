@@ -30,8 +30,8 @@ export default function HomePage() {
               Dakikalar içinde kapında
             </h1>
             <p className="max-w-md text-sm md:text-base text-white/90">
-              Market, restoran, atıştırmalık — hepsi tek uygulamada.
-              Bölgenizdeki en iyi işletmelerle çalışıyoruz.
+              Elektronik, Giyim, Aksesuar — hepsi tek uygulamada. Bölgenizdeki
+              en iyi işletmelerle çalışıyoruz.
             </p>
           </div>
 

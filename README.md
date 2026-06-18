@@ -1,3 +1,8 @@
+## Final - proje raporu
+
+- proje raporu, video , Arşiv ve hazırlık anlatımları.
+- gerekli raporlar teslim ve toold dosyasının içerisindedir.
+
 ## 11. hafta ödevi
 
 [Akış diyagramı](./onbirinci_h_akis_diyagramı.png)

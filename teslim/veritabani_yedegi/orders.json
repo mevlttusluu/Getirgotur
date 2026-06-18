@@ -1,0 +1,212 @@
+[
+  {
+    "_id": "69f329327bd9e360f7eaa89e",
+    "orderId": "GG-1777543474156",
+    "userId": "69f1353ffe21e9f6b8bba272",
+    "customer": {
+      "name": "Adnan Sami Altıntaş",
+      "phone": "+905304888175",
+      "email": "altintasadnan9@gmail.com",
+      "address": "aaaaaaaa"
+    },
+    "paymentMethod": "cash",
+    "paymentDetails": {
+      "cardHolder": "",
+      "last4": ""
+    },
+    "items": [
+      {
+        "id": 33,
+        "name": "Kadın Elbise",
+        "quantity": 1,
+        "price": 899,
+        "img": "https://picsum.photos/300/300?random=33"
+      }
+    ],
+    "itemCount": 1,
+    "totalPrice": 899,
+    "createdAt": "2026-04-30T10:04:34.892Z",
+    "updatedAt": "2026-04-30T10:04:34.892Z",
+    "__v": 0
+  },
+  {
+    "_id": "69f3412da735d1fc6d360dbf",
+    "orderId": "GG-288895-766650",
+    "userId": "69f3412ca735d1fc6d360db9",
+    "customer": {
+      "name": "Mert Şahin",
+      "phone": "0537 783 18 99",
+      "email": "mert.sahin.720@mail.test",
+      "address": "Cumhuriyet Sk. No:133, D:50, Bornova/İzmir"
+    },
+    "paymentMethod": "card",
+    "paymentDetails": {
+      "cardHolder": "Mert Şahin",
+      "last4": "3084"
+    },
+    "items": [
+      {
+        "id": 41,
+        "name": "Klasik Kupa S",
+        "quantity": 4,
+        "price": 844,
+        "img": "https://picsum.photos/seed/ev.yasam-7402/300/300"
+      }
+    ],
+    "itemCount": 4,
+    "totalPrice": 3376,
+    "__v": 0,
+    "createdAt": "2026-04-30T11:46:53.932Z",
+    "updatedAt": "2026-04-30T11:46:53.932Z"
+  },
+  {
+    "_id": "6a332ca7393a3f166871fa4c",
+    "orderId": "GG-1781738663385",
+    "userId": null,
+    "customer": {
+      "name": "Adnan Sami Altıntaş",
+      "phone": "+905304888175",
+      "email": "altintasadnan9@gmail.com",
+      "address": "aaaaaaaaaaaa"
+    },
+    "paymentMethod": "cash",
+    "paymentDetails": {
+      "cardHolder": "",
+      "last4": ""
+    },
+    "items": [
+      {
+        "id": 39,
+        "name": "Şık Güneş Gözlüğü L",
+        "quantity": 1,
+        "price": 313.5,
+        "img": "https://picsum.photos/seed/aksesuar-7452/300/300"
+      }
+    ],
+    "itemCount": 1,
+    "totalPrice": 313.5,
+    "createdAt": "2026-06-17T23:24:23.979Z",
+    "updatedAt": "2026-06-17T23:24:23.979Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a333061393a3f166871fad8",
+    "orderId": "GG-1781739617152",
+    "userId": "69f1353ffe21e9f6b8bba272",
+    "customer": {
+      "name": "Adnan Sami Altıntaş",
+      "phone": "+905304888175",
+      "email": "altintasadnan9@gmail.com",
+      "address": "gggggggg"
+    },
+    "paymentMethod": "card",
+    "paymentDetails": {
+      "cardHolder": "aa",
+      "last4": "4567"
+    },
+    "items": [
+      {
+        "id": 41,
+        "name": "Klasik Kupa S",
+        "quantity": 12,
+        "price": 844,
+        "img": "https://picsum.photos/seed/ev.yasam-7402/300/300"
+      }
+    ],
+    "itemCount": 12,
+    "totalPrice": 10128,
+    "createdAt": "2026-06-17T23:40:17.752Z",
+    "updatedAt": "2026-06-17T23:40:17.752Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a333094393a3f166871faff",
+    "orderId": "GG-1781739667830",
+    "userId": "69f1353ffe21e9f6b8bba272",
+    "customer": {
+      "name": "Adnan Altıntaş",
+      "phone": "5555555555",
+      "email": "altintasadnan9@gmail.com",
+      "address": "bbb"
+    },
+    "paymentMethod": "cash",
+    "paymentDetails": {
+      "cardHolder": "",
+      "last4": ""
+    },
+    "items": [
+      {
+        "id": 41,
+        "name": "Klasik Kupa S",
+        "quantity": 2,
+        "price": 844,
+        "img": "https://picsum.photos/seed/ev.yasam-7402/300/300"
+      }
+    ],
+    "itemCount": 2,
+    "totalPrice": 1688,
+    "createdAt": "2026-06-17T23:41:08.409Z",
+    "updatedAt": "2026-06-17T23:41:08.409Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a33311d393a3f166871fb26",
+    "orderId": "GG-1781739805411",
+    "userId": "69f1353ffe21e9f6b8bba272",
+    "customer": {
+      "name": "Adnan Sami Altıntaş",
+      "phone": "+905304888175",
+      "email": "altintasadnan9@gmail.com",
+      "address": "hhhh"
+    },
+    "paymentMethod": "cash",
+    "paymentDetails": {
+      "cardHolder": "",
+      "last4": ""
+    },
+    "items": [
+      {
+        "id": 41,
+        "name": "Klasik Kupa S",
+        "quantity": 15,
+        "price": 844,
+        "img": "https://picsum.photos/seed/ev.yasam-7402/300/300"
+      }
+    ],
+    "itemCount": 15,
+    "totalPrice": 12660,
+    "createdAt": "2026-06-17T23:43:25.971Z",
+    "updatedAt": "2026-06-17T23:43:25.971Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a33cc05559f1ad96d6460f5",
+    "orderId": "GG-1781779460486",
+    "userId": "6a33caa8559f1ad96d64607b",
+    "customer": {
+      "name": "adnan altıntaş",
+      "phone": "5555555555",
+      "email": "altintasadnan9@gmail.com",
+      "address": "mku"
+    },
+    "paymentMethod": "card",
+    "paymentDetails": {
+      "cardHolder": "Adnan Sami Altıntaş",
+      "last4": "4567"
+    },
+    "items": [
+      {
+        "id": 42,
+        "name": "hırka",
+        "quantity": 2,
+        "price": 200,
+        "img": ""
+      }
+    ],
+    "itemCount": 2,
+    "totalPrice": 400,
+    "createdAt": "2026-06-18T10:44:21.462Z",
+    "updatedAt": "2026-06-18T10:44:21.462Z",
+    "__v": 0
+  }
+]

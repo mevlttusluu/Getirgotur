@@ -1,0 +1,10 @@
+{
+  "exportedAt": "2026-06-18T13:06:30.212Z",
+  "database": "getirDB",
+  "collections": {
+    "users": 12,
+    "products": 42,
+    "orders": 7,
+    "sessions": 1
+  }
+}
