@@ -1,7 +1,6 @@
 # Tanıtım Videosu Senaryosu
 
-[Anlatım](./part_1.mp4)
-[Anlatım](./part-2.mp4.)
+[Anlatım](./anlatım.mp4)
 
 Bu senaryo, ders gereksinimindeki _"projenin var olan bütün özellikleri"_.
 
